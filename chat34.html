@@ -36,14 +36,18 @@ button:hover {
 }
 
 .imgcontainer {
-  text-align: center;
-  margin: 80px 0 12px 400px;
-  width: 1080px;
+  text-align: left;
+  margin: 30px 0 20px 300px;
+  width: 400px;
+  display: flex;
+ 
 }
 
 img.avatar {
-  width: 40%;
-  border-radius: 50%;
+  width: 30%;
+  border-radius: 20%;
+  margin-right: 120px;
+  
 }
 
 .container {
@@ -53,6 +57,21 @@ img.avatar {
 span.psw {
   float: right;
   padding-top: 16px;
+}
+
+
+
+@font-face {
+  font-family: Arial, Helvetica, sans-serif;
+  
+  src: url(sansation_bold.woff);
+ font-weight:  bold ;
+} 
+
+.title{
+  text-align: center;
+  font-family:Arial, Helvetica, sans-serif;
+
 }
 
 /* Change styles for span and cancel button on extra small screens */
@@ -71,13 +90,16 @@ span.psw {
 </style>
 </head>
 <body>
+
 <span class="login">
 <!--<h2>Login Form</h2>
-
 <form action="" method="post">-->
  <div id="info">
   <div class="imgcontainer">
+   
     <img src="user.png" alt="Avatar" class="avatar">
+    <h1 class="title">PANFO COMUNICATOR</h1>
+    
   </div>
 
   <div class="container">
@@ -88,14 +110,12 @@ span.psw {
     <input id="segreto" type="password" placeholder="Enter Password" >
 
     <button onclick="aprischedanuova()" type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
+    
   </div>
 
   <div class="container" style="background-color:#f1f1f1">
     <button  onclick="cancellasezioni()" type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
+   
   
  </div>
   </div>
@@ -139,8 +159,8 @@ const correctPassword= "password";
 function gestoreRicezione(messaggio){
     document.getElementById("ricezione").textContent += messaggio.data + "\n"; // [1]
   }
-
-  let ws = new WebSocket("ws://10.1.0.52:8080/serverchat/chat5i2"); // [2]
+ //"ws://10.1.0.52:8080/serverchat/chat5i2"
+  let ws = new WebSocket(""); // [2]
   ws.onmessage = gestoreRicezione;
 
   function inviaAlServer(){
@@ -159,7 +179,13 @@ function chiudiLaConnessione(){
 }
  
 
- function cancellasezioni(){}
+ function cancellasezioni(){
+
+  const pass=document.getElementById("segreto").value="";
+  const userr=document.getElementById("nome").value="";
+
+ }
+  
 </script>
 </body>
 
