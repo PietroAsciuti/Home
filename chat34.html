@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 80px 0 12px 400px;
+  width: 1080px;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+ 
+
+
+}
+</style>
+</head>
+<body>
+<span class="login">
+<!--<h2>Login Form</h2>
+
+<form action="" method="post">-->
+ <div id="info">
+  <div class="imgcontainer">
+    <img src="user.png" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
+    <label ><b>Username</b></label>
+    <input id="nome" type="text" placeholder="Enter Username" >
+
+    <label ><b>Password</b></label>
+    <input id="segreto" type="password" placeholder="Enter Password" >
+
+    <button onclick="aprischedanuova()" type="submit">Login</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button  onclick="cancellasezioni()" type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  
+ </div>
+  </div>
+<!--</form>-->
+</span>
+
+<div id="server">
+  <textarea id="ricezione" readonly></textarea><br/>
+  <input id="msg" type="text" />
+  <button onClick="inviaAlServer()">invia!</button>
+  <button onClick="chiudiLaConnessione()">chiudi</button>
+  
+</div>
+<script>
+  "use strict"
+  
+  //nasconde la parte sotto
+  const nascondosotto=document.getElementById("server").hidden=true
+//-------------------------------------
+
+  //login e copro parte sopra
+
+function aprischedanuova(){
+
+  const userr=document.getElementById("nome").value;
+  const nome="giulio";
+  
+const pass=document.getElementById("segreto").value;
+const correctPassword= "password";
+
+  if(pass==correctPassword && nome==userr){
+  const nascondosotto=document.getElementById("server").hidden=false;
+  const nascondosopra=document.getElementById("info").hidden=true;
+  }
+  
+  //------------------------------------------
+}
+//websocket
+//-----------------------------------
+
+function gestoreRicezione(messaggio){
+    document.getElementById("ricezione").textContent += messaggio.data + "\n"; // [1]
+  }
+
+  let ws = new WebSocket("ws://10.1.0.52:8080/serverchat/chat5i2"); // [2]
+  ws.onmessage = gestoreRicezione;
+
+  function inviaAlServer(){
+    let messaggio = document.getElementById("msg").value;
+    ws.send( messaggio );  // [3]
+  }
+  function chiudiLaConnessione(){
+    ws.close();  // [4]
+  }
+//--------------------------------------
+
+
+function chiudiLaConnessione(){
+  const nascondosotto=document.getElementById("server").hidden=true;
+  const nascondosopra=document.getElementById("info").hidden=false;
+}
+ 
+
+ function cancellasezioni(){}
+</script>
+</body>
+
+</html>
