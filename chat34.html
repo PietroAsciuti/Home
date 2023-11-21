@@ -4,10 +4,100 @@
 <head>
   <link rel="stylesheet" href="style.css">
 
+<<<<<<< HEAD
+=======
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+ 
+  /*margin: 3% 0 1% 30%;*/
+  display: flex;
+   align-items: center;
+   justify-content: center;
+  
+  
+}
+
+ 
+img.avatar {
+  width: 5%;
+  border-radius: 20%;
+margin-right: 1%;
+  
+  
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+
+
+@font-face {
+  font-family: Arial, Helvetica, sans-serif;
+  
+  src: url(sansation_bold.woff);
+ font-weight:  bold ;
+} 
+
+.title{
+  text-align: center;
+  font-family:Arial, Helvetica, sans-serif;
+
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+ 
+
+
+}
+</style>
+>>>>>>> 3c8ea69a1ebbd24d739f6a88677eb056e1fd43e3
 </head>
 
 <body>
 
+<<<<<<< HEAD
   <span class="login">
     <div id="info">
       <div class="imgcontainer">
@@ -49,6 +139,95 @@
 
   <script>
     "use strict"
+=======
+<span class="login">
+<!--<h2>Login Form</h2>
+<form action="" method="post">-->
+ <div id="info">
+  <div class="imgcontainer">
+   
+    <img src="user.png" alt="Avatar" class="avatar">
+  
+    <h1 class="title">PANFO COMUNICATOR</h1>
+  </div>
+
+
+  <div class="container">
+    <label ><b>Username</b></label>
+    <input id="nome" type="text" placeholder="Enter Username" >
+
+    <label ><b>Password</b></label>
+    <input id="segreto" type="password" placeholder="Enter Password" >
+
+    <button onclick="aprischedanuova()" type="submit">Login</button>
+    
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button  onclick="cancellasezioni()" type="button" class="cancelbtn">Cancel</button>
+   
+  
+ </div>
+  </div>
+<!--</form>-->
+</span>
+
+<div id="server">
+  <textarea id="ricezione" readonly></textarea><br/>
+  <input id="msg" type="text" />
+  <button onClick="inviaAlServer()">invia!</button>
+  <button onClick="chiudiLaConnessione()">chiudi</button>
+  
+</div>
+<script>
+  "use strict"
+  
+  //nasconde la parte sotto
+  const nascondosotto=document.getElementById("server").hidden=true
+//-------------------------------------
+
+  //login e copro parte sopra
+
+function aprischedanuova(){
+
+  const userr=document.getElementById("nome").value;
+  const nome="giulio";
+  
+const pass=document.getElementById("segreto").value;
+const correctPassword= "password";
+
+  if(pass==correctPassword && nome==userr){
+  const nascondosotto=document.getElementById("server").hidden=false;
+  const nascondosopra=document.getElementById("info").hidden=true;
+  }
+  
+  //------------------------------------------
+}
+//websocket
+//-----------------------------------
+
+function gestoreRicezione(messaggio){
+    document.getElementById("ricezione").textContent += messaggio.data + "\n"; // [1]
+  }
+ //"ws://10.1.0.52:8080/serverchat/chat5i2"
+  let ws = new WebSocket(""); // [2]
+  ws.onmessage = gestoreRicezione;
+
+  function inviaAlServer(){
+    let messaggio = document.getElementById("msg").value;
+    ws.send( messaggio );  // [3]
+  }
+  function chiudiLaConnessione(){
+    ws.close();  // [4]
+    const nascondosotto=document.getElementById("server").hidden=true;
+  const nascondosopra=document.getElementById("info").hidden=false;
+  }
+//--------------------------------------
+
+
+
+ 
+>>>>>>> 3c8ea69a1ebbd24d739f6a88677eb056e1fd43e3
 
     //nasconde la sezione che dovrà apparire dopo aver premuto il pulsante "login"
     const nascondosotto = document.getElementById("server").hidden = true
